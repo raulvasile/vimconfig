@@ -56,9 +56,6 @@ set tm=500
 " ---------------------------
 syntax enable
 
-colorscheme desert
-set background=dark
-
 if has("gui_running")
 	set guioptions-=T
 	set guioptions+=e
@@ -202,6 +199,8 @@ endfunction
 set nocompatible
 filetype off
 
+set regexpengine=1
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -210,7 +209,19 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tomasr/molokai'
 " End of plugin list
+
+" Plugins stuff
+map <C-n> :NERDTreeToggle<CR>
+
+let g:molokai_original=1
+let g:rehash256=1
 
 call vundle#end()
 filetype plugin indent on
