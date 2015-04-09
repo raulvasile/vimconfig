@@ -15,6 +15,9 @@ nmap <leader>w :w!<cr>
 
 set relativenumber
 
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
 set colorcolumn=80
 
 " ---------------------------
@@ -215,6 +218,10 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'mattn/emmet-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
 " End of plugin list
 
 " Plugins stuff
@@ -222,6 +229,26 @@ map <C-n> :NERDTreeToggle<CR>
 
 let g:molokai_original=1
 let g:rehash256=1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+
+function! AirlineInit()
+    let g:airline_section_a=airline#section#create(['mode',' ','branch'])
+    let g:airline_section_b=airline#section#create_left(['ffenc','hunks','%f'])
+    let g:airline_section_c=airline#section#create(['filetype'])
+    let g:airline_section_x=airline#section#create(['%P'])
+    let g:airline_section_y=airline#section#create(['%B'])
+    let g:airline_section_z=airline#section#create_right(['%l','%c'])
+endfunction
+
+autocmd VimEnter * call AirlineInit()
 
 call vundle#end()
 filetype plugin indent on
